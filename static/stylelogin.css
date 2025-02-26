@@ -1,0 +1,50 @@
+/* Estilo general para el cuerpo */
+body {
+    margin: 0; /* Elimina los márgenes por defecto */
+    color: #333; /* Contraste adecuado */
+}
+
+/* Estilo para la tarjeta */
+.card {
+    background-color: rgba(255, 255, 255, 0.85); /* Fondo semitransparente para resaltar sobre el fondo */
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 400px; /* Ancho máximo para la tarjeta */
+}
+
+/* Ajustes para centrar la tarjeta en la columna izquierda */
+.bg-light {
+    display: flex;
+    align-items: center; /* Centrado vertical */
+    justify-content: center; /* Centrado horizontal */
+    background-color: blue; /* Fondo claro */
+    height: 100vh; /* Asegura que cubra toda la altura de la pantalla */
+}
+
+/* Columna derecha con imagen de fondo */
+.bg-image {
+    background: url("/static/sede-estadio-iush.jpg") no-repeat center center;
+    background-size: cover; /* Cubre toda la columna */
+    height: 100vh; /* Asegura que cubra toda la altura de la pantalla */
+}
+
+/* Altura completa para las columnas */
+.container-fluid,
+.row {
+    height: 100vh; /* Hace que las columnas ocupen toda la altura de la ventana */
+}
+
+/* Ajuste del logo */
+img {
+    display: block;
+    margin: 0 auto; /* Centra el logo */
+    max-width: 150px; /* Ancho máximo */
+    height: auto; /* Mantiene la proporción */
+}
+
+/* Botones del formulario */
+button {
+    font-size: 1rem;
+    font-weight: bold;
+}

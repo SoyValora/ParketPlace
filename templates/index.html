@@ -8,17 +8,22 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+<div class="container-fluid vh-100">
+    <div class="row h-100">
+        <!-- Columna izquierda -->
+        <div class="col-md-6 d-flex justify-content-center align-items-center bg-light">
+            <div class="card p-4 text-center">
+                <!-- Logo -->
+                <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="img-fluid mb-3" style="max-width: 150px;">
 
-<div class="container mt-5">
-    <div class="row">
-        <div class="col-md-4 mx-auto">
-            <div class="card p-4">
-                <h3 class="text-center">Salazar y Herrera Marketplace</h3>
+                <!-- Título -->
+                <h3>Salazar y Herrera Parketplace</h3>
 
                 {% if error %}
                     <div class="alert alert-danger text-center">{{ error }}</div>
                 {% endif %}
 
+                <!-- Formulario -->
                 <form method="POST">
                     <div class="mb-3">
                         <input type="text" class="form-control" name="usuario" placeholder="Usuario" required>
@@ -31,8 +36,10 @@
                 <a href="#" class="btn btn-secondary w-100 mt-2">Registrarse</a>
             </div>
         </div>
+
+        <!-- Columna derecha -->
+        <div class="col-md-6 bg-image"></div>
     </div>
 </div>
-
 </body>
 </html>

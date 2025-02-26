@@ -1,8 +1,50 @@
+/* Estilos generales */
 body {
-    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
 }
 
-.card {
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+/* Barra lateral */
+#sidebar {
+    width: 250px;
+    height: 100vh;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#sidebar.collapsed {
+    width: 60px;
+}
+
+#sidebar.collapsed .sidebar-text {
+    display: none;
+}
+
+/* Botón de alternar barra */
+.toggle-btn {
+    position: absolute;
+    top: 15px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-btn:hover {
+    background: #f0f0f0;
+}
+
+.toggle-btn i {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+#sidebar.collapsed .toggle-btn i {
+    transform: rotate(180deg);
 }

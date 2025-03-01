@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
-# Ruta principal con formulario de inicio de sesión
+# Ruta de login
 @app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -17,10 +17,29 @@ def login():
 
     return render_template("index.html")
 
-# Página después del login
+# Página del dashboard
 @app.route("/dashboard")
 def dashboard():
     return render_template("dashboard.html")
 
+# Ruta de registro (Formulario GET y Procesamiento POST)
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        nombre = request.form.get("nombre")
+        apellidos = request.form.get("apellidos")
+        cedula = request.form.get("cedula")
+        codigo = request.form.get("codigo")
+        email = request.form.get("email")
+        celular = request.form.get("celular")
+
+        # Aquí puedes guardar los datos en una base de datos si lo deseas
+
+        mensaje = f"Registro exitoso para {nombre} {apellidos}!"
+        return render_template("register.html", mensaje=mensaje)
+
+    return render_template("register.html")
+
+# Iniciar la aplicación Flask
 if __name__ == "__main__":
     app.run(debug=True)

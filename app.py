@@ -28,8 +28,7 @@ def register():
     if request.method == "POST":
         nombre = request.form.get("nombre")
         apellidos = request.form.get("apellidos")
-        cedula = request.form.get("cedula")
-        codigo = request.form.get("codigo")
+        identificacion = request.form.get("identificacion")  # Puede ser cédula o código
         email = request.form.get("email")
         celular = request.form.get("celular")
 
@@ -39,6 +38,7 @@ def register():
         return render_template("register.html", mensaje=mensaje)
 
     return render_template("register.html")
+
 
 # Iniciar la aplicación Flask
 if __name__ == "__main__":

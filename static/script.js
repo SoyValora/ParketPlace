@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 document.addEventListener("DOMContentLoaded", function () {
-    let username = "Invitado"; // Aquí debes obtener el nombre real
+    let username = "Usuarios IUSH"; // Aquí debes obtener el nombre real
 
     // Actualizar en la barra superior
     document.getElementById("username").innerText = username;

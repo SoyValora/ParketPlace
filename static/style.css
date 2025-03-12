@@ -48,3 +48,213 @@ body {
 #sidebar.collapsed .toggle-btn i {
     transform: rotate(180deg);
 }
+
+/* Contenedor desplegable de usuario */
+.user-container {
+    position: absolute;
+    top: 60px; /* Ajusta según la altura del navbar */
+    right: 20px;
+    z-index: 999;
+}
+
+.user-content {
+    background: #fff;
+    padding: 20px 25px;
+    border-radius: 8px;
+    width: 350px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    text-align: left;
+    color: #000;
+    position: relative;
+    font-family: Arial, sans-serif;
+}
+
+/* Encabezado con el ícono de configuración */
+.user-content .header {
+    margin-bottom: 20px;
+}
+
+.user-content .header h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Botón de configuración (ícono de tuerca) */
+.user-content .btn-icon {
+    background-color: transparent;
+    border: 0px solid #000;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.user-content .btn-icon i {
+    color: #000;
+    font-size: 18px;
+}
+
+.user-content .btn-icon:hover {
+    background-color: #f0f0f0;
+}
+
+/* Información del usuario */
+.user-info p {
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Botones principales */
+.button-group {
+    margin-top: 20px;
+}
+
+.custom-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    background-color: #fff;
+    border: 0px solid #000;
+    color: #000;
+}
+
+.custom-btn i {
+    font-size: 16px;
+}
+
+.custom-btn:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+/* Botón de cerrar sesión en rojo */
+.logout-btn {
+    border: 1px solid #dc3545;
+    color: #dc3545;
+}
+
+.logout-btn:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Opcionales: para botones con colores personalizados */
+.profile-btn {
+    /* Puedes personalizarlo aquí */
+}
+
+.visits-btn {
+    /* Puedes personalizarlo aquí */
+}
+
+.transactions-btn {
+    /* Puedes personalizarlo aquí */
+}
+
+/* Opcional para ocultar elementos */
+.d-none {
+    display: none;
+}
+
+/* Contenedor de las notificaciones */
+.notification-container {
+    position: absolute;
+    top: 60px; /* Altura bajo el navbar */
+    right: 20px; /* Ajustado para no chocar con el perfil */
+    z-index: 999;
+}
+
+.notification-content {
+    background: #fff;
+    padding: 20px 25px;
+    border-radius: 8px;
+    width: 350px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
+    color: #000;
+    position: relative;
+    font-family: Arial, sans-serif;
+}
+
+/* Header del contenedor */
+.notification-content .header {
+    margin-bottom: 20px;
+}
+
+.notification-content .header h5 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.notification-content .btn-icon {
+    background-color: transparent;
+    border: 0px solid #000;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.notification-content .btn-icon:hover {
+    background-color: #f0f0f0;
+}
+
+.notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-list li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+.notification-list li:last-child {
+    border-bottom: none;
+}
+
+.notification-list small {
+    font-size: 12px;
+    color: #666;
+}
+
+.view-all-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 15px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    background-color: #fff;
+    border: 0px solid #000;
+    color: #000;
+}
+
+.view-all-btn:hover {
+    background-color: #000;
+    color: #fff;
+}

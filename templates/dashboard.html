@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
@@ -23,12 +24,90 @@
     <!-- Contenido principal -->
     <div class="container-fluid p-4">
         <!-- Navbar superior -->
-        <nav class="navbar navbar-light bg-light d-flex justify-content-between">
+        <nav class="navbar navbar-light bg-light d-flex justify-content-between position-relative">
             <span class="navbar-brand">ParketPlace</span>
             <div>
                 <span class="me-3" id="username">Cargando...</span>
-                <button id="user-btn" class="btn btn-light"><i class="bi bi-person-circle"></i></button>
-                <button id="notif-btn" class="btn btn-light"><i class="bi bi-bell"></i></button>
+                <button id="user-btn" class="btn btn-light">
+                    <i class="bi bi-person-circle"></i>
+                </button>
+                <button id="notif-btn" class="btn btn-light">
+                    <i class="bi bi-bell"></i>
+                </button>
+
+      
+                <div id="user-container" class="user-container d-none">
+                    <div class="user-content">
+                        <!-- Encabezado del perfil con ícono de configuración alineado -->
+                        <div class="header d-flex justify-content-between align-items-center">
+                            <h5 class="fw-bold mb-0">Perfil de Usuario</h5>
+                            <button class="btn-icon" title="Configuración">
+                                <i class="fas fa-cog"></i>
+                            </button>
+                        </div>
+                
+                        <!-- Información del usuario -->
+                        <div class="user-info mt-3">
+                            <p><strong>Nombre:</strong> Nombre del Usuario</p>
+                            <p><strong>Email:</strong> usuario@email.com</p>
+                            <p><strong>Rol:</strong> Usuario</p>
+                        </div>
+                
+                        <!-- Botones principales -->
+                        <div class="button-group mt-4">
+                            <button class="btn custom-btn profile-btn mb-2">
+                                <i class="fas fa-user-circle me-2"></i> Ver Perfil
+                            </button>
+                            <button class="btn custom-btn visits-btn mb-2">
+                                <i class="fas fa-history me-2"></i> Historial de Visitas
+                            </button>
+                            <button class="btn custom-btn transactions-btn mb-2">
+                                <i class="fas fa-file-invoice-dollar me-2"></i> Historial de Transacciones
+                            </button>
+                            <button class="btn custom-btn logout-btn">
+                                <i class="fas fa-sign-out-alt me-2"></i> Cerrar Sesión
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+<!-- Contenedor de notificaciones -->
+<div id="notification-container" class="notification-container d-none">
+    <div class="notification-content">
+        <!-- Header del panel -->
+        <div class="header d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0">Notificaciones</h5>
+            <button class="btn-icon" title="Configuración Notificaciones">
+                <i class="fas fa-cog"></i>
+            </button>
+        </div>
+
+        <!-- Lista de notificaciones -->
+        <ul class="notification-list mt-3">
+            <li>
+                <i class="fas fa-exclamation-circle me-2"></i> Nueva alerta de SOAT
+                <small class="text-muted d-block">Hace 5 minutos</small>
+            </li>
+            <li>
+                <i class="fas fa-car-crash me-2"></i> Pico y Placa actualizado
+                <small class="text-muted d-block">Hace 1 hora</small>
+            </li>
+            <li>
+                <i class="fas fa-tools me-2"></i> Mantenimiento programado
+                <small class="text-muted d-block">Ayer</small>
+            </li>
+        </ul>
+
+        <!-- Botón para ver todas -->
+        <div class="button-group mt-4">
+            <button class="btn custom-btn view-all-btn">
+                <i class="fas fa-eye me-2"></i> Ver Todas
+            </button>
+        </div>
+    </div>
+</div>
+
+
             </div>
         </nav>
 

@@ -6,7 +6,7 @@ body {
 /* Barra lateral */
 
 .sidebar {
-    width: 250px;
+    width: 20%;
     height: 100vh;
     background-color: #1c1f26; /* Color de fondo del sidebar */
     color: white;
@@ -20,40 +20,44 @@ body {
 }
 /* Sidebar colapsado */
 .sidebar.collapsed {
-    width: 80px;
+    width: 5.5%;
 }
 
+.sidebar.collapsed h4{
+    display: none;
+}
 /* ====== ITEMS DEL SIDEBAR ====== */
 .sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 100%;
+    width: 60%;
 }
 
 .sidebar ul li {
     display: flex;
     align-items: center;
-    padding: 15px 20px;
+    padding: 0px, 15px;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .sidebar ul li:hover {
     background-color: #333;
+    border-radius: 10px; /* Ajusta el valor según lo redondo que quieras */
+    padding: 5px 10px; /* Asegura espacio interno para que el borde se vea bien */
 }
+
 
 /* Iconos en estado normal */
 .sidebar ul li i.icon {
     font-size: 1.2rem;
-    margin-right: 15px;
-    min-width: 20px;
+    margin-right: 10px;
+    min-width: 15px;
     text-align: center;
 }
 
 /* Texto del ítem */
 .sidebar ul li .link-text {
-    font-size: 16px;
+    font-size: 85%;
+    font-weight: bold;
     white-space: nowrap;
     opacity: 1;
     transition: opacity 0.3s ease;
@@ -62,11 +66,20 @@ body {
 /* ====== SIDEBAR COLAPSADO AJUSTES ====== */
 .sidebar.collapsed ul li {
     justify-content: center;
-    padding: 20px 0;
+    padding: 15px 0;
+}
+.sidebar.collapsed ul li:hover {
+    background-color: #333;
+    border-radius: 10px; /* Ajusta el redondeo a tu gusto */
+    padding: 10px 0; /* Solo arriba y abajo */
 }
 
+
+
+
+
 .sidebar.collapsed ul li i.icon {
-    font-size: 1.5rem; /* Ícono un poco más grande si lo deseas */
+    font-size: 1.2rem; /* Ícono un poco más grande si lo deseas */
     margin: 0;
 }
 
@@ -105,31 +118,7 @@ body {
 
 .sidebar.collapsed .toggle-btn i {
     transform: rotate(180deg);
-}
-
-/* ====== TOOLTIP CUANDO COLAPSA ====== */
-.sidebar.collapsed a[title] {
-    position: relative;
-}
-
-.sidebar.collapsed a[title]:hover::after {
-    content: attr(title);
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    background: #333;
-    color: #fff;
-    padding: 5px 10px;
-    white-space: nowrap;
-    border-radius: 5px;
-    margin-left: 10px;
-    font-size: 0.8rem;
-    z-index: 1000;
-}
-
-
-/* Contenedor desplegable de usuario */
+}/* Contenedor desplegable de usuario */
 .user-container {
     position: absolute;
     top: 60px; /* Ajusta según la altura del navbar */
@@ -229,22 +218,7 @@ body {
 .logout-btn:hover {
     background-color: #dc3545;
     color: #fff;
-}
-
-/* Opcionales: para botones con colores personalizados */
-.profile-btn {
-    /* Puedes personalizarlo aquí */
-}
-
-.visits-btn {
-    /* Puedes personalizarlo aquí */
-}
-
-.transactions-btn {
-    /* Puedes personalizarlo aquí */
-}
-
-/* Opcional para ocultar elementos */
+}/* Opcional para ocultar elementos */
 .d-none {
     display: none;
 }

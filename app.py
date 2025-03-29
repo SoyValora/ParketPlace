@@ -39,6 +39,9 @@ def register():
 
     return render_template("register.html")
 
+@app.route('/recargar_carnet')
+def recargar_carnet():
+    return render_template('recargar_carnet.html')
 
 # Iniciar la aplicación Flask
 if __name__ == "__main__":

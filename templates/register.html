@@ -8,7 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <h2>Página de Registro</h2>
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo IUSH" class="logo">
+        <h2>Regístrate</h2>
         <a href="{{ url_for('login') }}">← Volver</a>
 
         {% if mensaje %}
@@ -16,21 +17,26 @@
         {% endif %}
 
         <form method="POST" action="{{ url_for('register') }}">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
-
-            <label for="apellidos">Apellidos:</label>
-            <input type="text" id="apellidos" name="apellidos" required>
-
-            <label for="identificacion">Cédula o Código:</label>
-            <input type="text" id="identificacion" name="identificacion" required>
-
-            <label for="email">Email Personal:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="celular">Celular:</label>
-            <input type="tel" id="celular" name="celular" required>
-
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="apellidos">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" required>
+            </div>
+            <div class="form-group">
+                <label for="identificacion">Código:</label>
+                <input type="text" id="identificacion" name="identificacion" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Institucional::</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="celular">Celular:</label>
+                <input type="tel" id="celular" name="celular" required>
+            </div>
             <button type="submit">Registrarse</button>
         </form>
     </div>

@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="{{ url_for('recargar_carnet') }}" class="nav-link text-white d-flex align-items-center" title="Recargar Carnet">
+                <a href="#" class="nav-link text-white d-flex align-items-center" title="Recargar Carnet">
                     <i class="bi bi-credit-card-2-front icon"></i>
                     <span class="link-text">Recargar Carnet</span>
                 </a>
@@ -144,22 +144,80 @@
             <h3>Bienvenid@, <span class="fw-bold" id="user-name-display">Cargando...</span></h3>
         </div>
 
-        <!-- Sección Pico y Placa -->
-        <div class="card mt-3 p-3">
-            <h5>Pico y Placa de Hoy</h5>
-            <div class="d-flex align-items-center">
-                <input type="checkbox" class="form-check-input me-2">
-                <input type="checkbox" class="form-check-input me-2">
-                <span class="ms-3">Desde las 5 AM hasta las 8 PM</span>
+        <style>
+            body {
+                background-color: #f8f9fa;
+            }
+            .form-container {
+                max-width: 500px;
+                margin: 3rem auto;
+                padding: 2rem;
+                border-radius: 10px;
+                background: white;
+                box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            }
+            .form-header {
+                text-align: center;
+                margin-bottom: 1.5rem;
+            }
+        </style>
+    </head>
+    <body>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-header">
+                <h3>Recargar Carnet</h3>
+                <p class="text-muted">Complete los datos para realizar la recarga.</p>
             </div>
+            <form>
+                <!-- Campo de Identificación -->
+                <div class="mb-3">
+                    <label for="identificacion" class="form-label">Código Estudiantil</label>
+                    <input type="text" class="form-control" id="identificacion" placeholder="Ingrese su código estudiantil" required>
+                </div>
+                
+                <!-- Campo de Nombre Completo -->
+                <div class="mb-3">
+                    <label for="nombreCompleto" class="form-label">Nombre Completo</label>
+                    <input type="text" class="form-control" id="nombreCompleto" placeholder="Ingrese su nombre completo" required>
+                </div>
+    
+                <!-- Campo de Monto de Recarga -->
+                <div class="mb-3">
+                    <label for="montoRecarga" class="form-label">Monto a Recargar</label>
+                    <div class="input-group">
+                        <span class="input-group-text">$</span>
+                        <input type="text" class="form-control" id="montoRecarga" placeholder="Ingrese el monto" required>
+                    </div>
+                    <small class="text-muted">El monto será procesado en COP.</small>
+                </div>
+    
+                <!-- Botón de Recargar -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary">Recargar</button>
+                </div>
+            </form>
         </div>
-
-        <!-- Alertas de vencimiento -->
-        <div class="card mt-3 p-3">
-            <h5>Alertas</h5>
-            <p>SOAT vence el día: <span class="text-danger fw-bold">XX/XX/XXXX</span></p>
-            <p>Techo vence el día: <span class="text-danger fw-bold">XX/XX/XXXX</span></p>
-        </div>
+    </div>
+    
+    <script>
+        document.getElementById('montoRecarga').addEventListener('input', function (e) {
+            let rawValue = e.target.value.replace(/\D/g, ''); // Extrae solo los números
+            if (rawValue) {
+                // Formatea el valor como moneda COP
+                let formattedValue = new Intl.NumberFormat('es-CO', {
+                    style: 'decimal',
+                    minimumFractionDigits: 0
+                }).format(rawValue);
+                e.target.value = formattedValue; // Actualiza el campo con el valor formateado
+            } else {
+                e.target.value = ''; // Limpia el campo si no hay números
+            }
+        });
+    </script>
+    
+        
+       
 
         <!-- Pie de página -->
         <footer class="mt-4 text-center">

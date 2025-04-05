@@ -1,50 +1,110 @@
 /* Estilo general para el cuerpo */
 body {
-    margin: 0; /* Elimina los márgenes por defecto */
-    color: #333; /* Contraste adecuado */
+    margin: 0;
+    color: #e0e0e0;
+    background-color: #1a1a1a;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Estilo para la tarjeta */
-.card {
-    background-color: rgba(255, 255, 255, 0.85); /* Fondo semitransparente para resaltar sobre el fondo */
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    width: 100%;
-    max-width: 400px; /* Ancho máximo para la tarjeta */
-}
-
-/* Ajustes para centrar la tarjeta en la columna izquierda */
-.bg-light {
-    display: flex;
-    align-items: center; /* Centrado vertical */
-    justify-content: center; /* Centrado horizontal */
-    background-color: blue; /* Fondo claro */
-    height: 100vh; /* Asegura que cubra toda la altura de la pantalla */
-}
-
-/* Columna derecha con imagen de fondo */
-.bg-image {
-    background: url("/static/sede-estadio-iush.jpg") no-repeat center center;
-    background-size: cover; /* Cubre toda la columna */
-    height: 100vh; /* Asegura que cubra toda la altura de la pantalla */
-}
-
-/* Altura completa para las columnas */
+/* Contenedor principal */
 .container-fluid,
 .row {
-    height: 100vh; /* Hace que las columnas ocupen toda la altura de la ventana */
+    height: 100vh;
 }
 
-/* Ajuste del logo */
-img {
+/* Columna izquierda: fondo negro y centrado */
+.bg-light {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #111;
+}
+
+/* Columna derecha: fondo rojo oscuro */
+.bg-image {
+    background-color: #8b0000;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Tarjeta de login */
+.card {
+    background-color: #2a2a2a;
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+    width: 100%;
+    max-width: 420px;
+    padding: 3rem 2.5rem;
+    color: #ffffff;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+/* Logo */
+.card img {
     display: block;
-    margin: 0 auto; /* Centra el logo */
-    max-width: 150px; /* Ancho máximo */
-    height: auto; /* Mantiene la proporción */
+    margin: 0 auto 1.5rem auto;
+    max-width: 120px;
 }
 
-/* Botones del formulario */
+/* Título */
+.card h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+/* Inputs */
+input, select {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1.2rem;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus, select:focus {
+    border-color: #e74c3c;
+    box-shadow: 0 0 8px rgba(231, 76, 60, 0.4);
+    outline: none;
+}
+
+/* Botones */
 button {
     font-size: 1rem;
     font-weight: bold;
+    background-color: #c0392b;
+    border: none;
+    color: #fff;
+    padding: 0.75rem 1.2rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+button:hover {
+    background-color: #e74c3c;
+    transform: scale(1.02);
+}
+
+/* Botón secundario (registro) */
+a.btn-secondary {
+    background-color: #555;
+    border: none;
+    color: #fff;
+    margin-top: 1rem;
+    padding: 0.7rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+a.btn-secondary:hover {
+    background-color: #777;
+    text-decoration: none;
 }

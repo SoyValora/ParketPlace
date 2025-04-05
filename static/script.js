@@ -47,4 +47,18 @@ document.addEventListener("DOMContentLoaded", function () {
             notifContainer.classList.add('d-none');
         }
     });
+ 
+    document.getElementById('metodoPago').addEventListener('change', function () {
+        const metodo = this.value;
+        document.getElementById('tarjetaCreditoFields').classList.add('d-none');
+        document.getElementById('pseFields').classList.add('d-none');
+
+        if (metodo === 'TARJETA_CREDITO') {
+            document.getElementById('tarjetaCreditoFields').classList.remove('d-none');
+        } else if (metodo === 'PSE') {
+            document.getElementById('pseFields').classList.remove('d-none');
+        }
+    });
+
+
 });

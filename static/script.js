@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Botón de perfil de usuario
     userBtn.addEventListener('click', (event) => {
+        
         event.stopPropagation(); // Evita que el clic llegue al document
         // Cierra notificaciones si están abiertas
         notifContainer.classList.add('d-none');
@@ -60,5 +61,40 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+        // Manejar el envío del formulario
+        document.getElementById('registro-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevenir el comportamiento por defecto (enviar el formulario)
 
+            // Obtener los valores del formulario
+            const datos = {
+                nombres: document.getElementById('nombres').value,
+                apellidos: document.getElementById('apellidos').value,
+                documentoIdent: document.getElementById('documentoIdent').value,
+                codUniversidad: document.getElementById('codUniversidad').value,
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value,
+                programa: document.getElementById('programa').value,
+                fechaNacimiento: document.getElementById('fechaNacimiento').value,
+                celular: document.getElementById('celular').value
+            };
+
+            // Enviar los datos a la API de Flask usando fetch
+            fetch('http://localhost:3000/usuario/registro', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(datos)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Mostrar mensaje de éxito o error
+                alert(data.message || data.error);
+            })
+            .catch(error => {
+                console.error('Error al registrar el usuario:', error);
+                alert('Ocurrió un error al intentar registrar el usuario.');
+            });
+        });
+  
 });

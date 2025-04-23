@@ -1,35 +1,21 @@
-/* Estilo general para el cuerpo */
+/* Cuerpo: fondo con transición difuminada */
 body {
     margin: 0;
     color: #e0e0e0;
-    background-color: #1a1a1a;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Quicksand';
+    background: linear-gradient(to right, #c7c8ca 50%, rgba(199, 200, 202, 0.5) 75%), 
+                url('/static/fondoparket.webp');
+    background-size: cover;
+    background-position: center right;
+    height: 100vh;
+    display: flex; /* Usar Flexbox */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
 }
 
 /* Contenedor principal */
-.container-fluid,
-.row {
-    height: 100vh;
-}
-
-/* Columna izquierda: fondo negro y centrado */
-.bg-light {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #111;
-}
-
-/* Columna derecha: fondo rojo oscuro */
-.bg-image {
-    background-color: #8b0000;
-    background-size: cover;
-    background-position: center;
-}
-
-/* Tarjeta de login */
 .card {
-    background-color: #2a2a2a;
+    background-color: rgba(42, 42, 42, 0.9); /* Fondo con opacidad */
     border-radius: 16px;
     box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
     width: 100%;
@@ -37,10 +23,19 @@ body {
     padding: 3rem 2.5rem;
     color: #ffffff;
     transition: transform 0.3s ease;
+    text-align: center;
+    z-index: 2; /* Asegura estar encima del fondo */
+    backdrop-filter: blur(5px); /* Efecto de difuminado */
 }
 
 .card:hover {
     transform: translateY(-4px);
+}
+
+/* Ajuste del contenedor del formulario */
+.background-image {
+    background: none; /* Se elimina porque ahora el fondo está en body */
+    height: 100%;
 }
 
 /* Logo */
@@ -65,6 +60,7 @@ input, select {
     border-radius: 8px;
     padding: 0.8rem 1rem;
     margin-bottom: 1.2rem;
+    width: 100%;
     transition: border 0.2s, box-shadow 0.2s;
 }
 
@@ -101,6 +97,8 @@ a.btn-secondary {
     margin-top: 1rem;
     padding: 0.7rem;
     border-radius: 8px;
+    width: 100%;
+    display: block;
     transition: background-color 0.3s ease;
 }
 

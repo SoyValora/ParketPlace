@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Login - ParketPlace</title>
 
     <!-- Bootstrap -->
@@ -11,31 +12,39 @@
     <!-- Estilos personalizados -->
     <link rel="stylesheet" href="{{ url_for('static', filename='stylelogin.css') }}">
 </head>
-<body class="d-flex justify-content-center align-items-center bg-dark" style="height: 100vh;">
+<body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+        </style>
+    <div class="container-fluid vh-100 d-flex">
+        <!-- Formulario a la izquierda -->
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div class="card">
+                <!-- Logo -->
+                <img src="{{ url_for('static', filename='logoparket.jfif') }}" alt="ParketPlace Logo">
 
-    <div class="card p-4 text-center">
+                <!-- Título -->
+                <h3>Bienvenido a ParketPlace</h3>
 
-        <!-- Título -->
-        <h3 class="mb-3 text-white">ParketPlace</h3>
+                <!-- Mensaje de error -->
+                {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
 
-        <!-- Mensaje de error -->
-        {% if error %}
-            <div class="alert alert-danger text-center">{{ error }}</div>
-        {% endif %}
+                <!-- Formulario de inicio de sesión -->
+                <form method="POST">
+                    <input type="text" name="usuario" placeholder="Usuario" required>
+                    <input type="password" name="contrasena" placeholder="Contraseña" required>
+                    <button type="submit">Iniciar Sesión</button>
+                </form>
 
-        <!-- Formulario de inicio de sesión -->
-        <form method="POST">
-            <div class="mb-3">
-                <input type="text" class="form-control" name="usuario" placeholder="Usuario" required>
+                <!-- Botón de registro -->
+                <a href="{{ url_for('register') }}" class="btn-secondary">Registrarse</a>
             </div>
-            <div class="mb-3">
-                <input type="password" class="form-control" name="contrasena" placeholder="Contraseña" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
-        </form>
+        </div>
 
-        <!-- Botón de registro -->
-        <a href="{{ url_for('register') }}" class="btn btn-secondary w-100 mt-2">Registrarse</a>
+        <!-- Imagen de fondo a la derecha -->
+        <div class="col-md-6 d-none d-md-block background-image"></div>
     </div>
 </body>
 </html>

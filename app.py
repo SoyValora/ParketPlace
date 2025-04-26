@@ -64,6 +64,12 @@ def register():
         # Convertimos la fecha en formato 'date' que acepta MySQL
         fechaNacimiento = datetime.strptime(fechaNacimiento, '%Y-%m-%d').date()
 
+        usuario_existente = Usuario.query.filter_by(email=email).first()
+
+        if usuario_existente:
+            mensaje = "Este correo electrónico ya está registrado."
+            return render_template("register.html", mensaje=mensaje)
+
         # Creamos un nuevo usuario con los datos obtenidos
         nuevo_usuario = Usuario(
             nombres=nombres,

@@ -1,31 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
+import requests
 from datetime import datetime
-import uuid 
+
 
 app = Flask(__name__)
 
-# Configuración de la base de datos (ajustar con tus credenciales)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:admin@localhost/parketplace'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
-
-# Modelo de la tabla 'usuarios' en MySQL
-class Usuario(db.Model):
-    __tablename__ = 'usuario'  # Nombre de la tabla en MySQL
-
-    id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-    nombres = db.Column(db.String(100))
-    apellidos = db.Column(db.String(100))
-    documentoIdent = db.Column(db.String(20))
-    codUniversidad = db.Column(db.Integer)
-    email = db.Column(db.String(100))
-    password = db.Column(db.String(100))
-    programa = db.Column(db.String(100))
-    fechaNacimiento = db.Column(db.Date)
-    celular = db.Column(db.String(20))
-    updatedAt = db.Column(db.DateTime, default=datetime.utcnow)
 
 # Ruta de login
 @app.route("/", methods=["GET", "POST"])
@@ -61,41 +40,38 @@ def register():
         fechaNacimiento = request.form["fechaNacimiento"]
         celular = request.form["celular"]
 
-        # Convertimos la fecha en formato 'date' que acepta MySQL
-        fechaNacimiento = datetime.strptime(fechaNacimiento, '%Y-%m-%d').date()
+        # Convertir fecha a string si necesitas (NestJS espera string tipo '2024-04-25')
+        fechaNacimiento = datetime.strptime(fechaNacimiento, '%Y-%m-%d').isoformat() + "Z"
 
-        usuario_existente = Usuario.query.filter_by(email=email).first()
-        documento_existente = Usuario.query.filter_by(documentoIdent=documentoIdent).first()
+         # Convertir codUniversidad a int
+        try:
+            codUniversidad = int(codUniversidad)
+        except ValueError:
+            return render_template("register.html", mensaje="El código de universidad debe ser un número entero.")
 
-        if usuario_existente:
-            mensaje = "Este usuario ya está registrado."
-            return render_template("register.html", mensaje=mensaje)
-        
-        if documento_existente:
-            mensaje = "Este usuario ya está registrado."
-            return render_template("register.html", mensaje=mensaje)
-
-        # Creamos un nuevo usuario con los datos obtenidos
-        nuevo_usuario = Usuario(
-            nombres=nombres,
-            apellidos=apellidos,
-            documentoIdent=documentoIdent,
-            codUniversidad=codUniversidad,
-            email=email,
-            password=password,
-            programa=programa,
-            fechaNacimiento=fechaNacimiento,
-            celular=celular
-        )
+        # Crear el payload
+        payload = {
+            "nombres": nombres,
+            "apellidos": apellidos,
+            "documentoIdent": documentoIdent,
+            "codUniversidad": codUniversidad,
+            "email": email,
+            "password": password,
+            "programa": programa,
+            "fechaNacimiento": fechaNacimiento,
+            "celular": celular
+        }
 
         try:
-            # Agregamos el nuevo usuario a la base de datos
-            db.session.add(nuevo_usuario)
-            db.session.commit()
-            mensaje = "Usuario registrado exitosamente"
+            # Enviar POST a NestJS
+            response = requests.post("http://localhost:3000/usuario/registro", json=payload)
+
+            if response.status_code == 201 or response.status_code == 200:
+                mensaje = "Usuario registrado exitosamente en el backend"
+            else:
+                mensaje = f"Error al registrar usuario: {response.text}"
         except Exception as e:
-            db.session.rollback()
-            mensaje = f"Error: {str(e)}"
+            mensaje = f"Error de conexión: {str(e)}"
 
         return render_template("register.html", mensaje=mensaje)
 

@@ -9,9 +9,16 @@
 <body>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-        </style>
+    </style>
     <div class="card">
         <h2>Regístrate</h2>
+        <!-- Mostrar mensaje de éxito o error -->
+        {% if mensaje %}
+            <div class="alert">
+                <p>{{ mensaje }}</p>
+            </div>
+        {% endif %}
+
         <form method="POST" action="{{ url_for('register') }}">
             <div class="form-grid">
                 <div class="form-group">

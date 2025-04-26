@@ -65,9 +65,14 @@ def register():
         fechaNacimiento = datetime.strptime(fechaNacimiento, '%Y-%m-%d').date()
 
         usuario_existente = Usuario.query.filter_by(email=email).first()
+        documento_existente = Usuario.query.filter_by(documentoIdent=documentoIdent).first()
 
         if usuario_existente:
-            mensaje = "Este correo electrónico ya está registrado."
+            mensaje = "Este usuario ya está registrado."
+            return render_template("register.html", mensaje=mensaje)
+        
+        if documento_existente:
+            mensaje = "Este usuario ya está registrado."
             return render_template("register.html", mensaje=mensaje)
 
         # Creamos un nuevo usuario con los datos obtenidos

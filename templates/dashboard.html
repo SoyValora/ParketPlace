@@ -55,7 +55,7 @@
         <nav class="navbar navbar-light bg-light d-flex justify-content-between position-relative">
             <span class="navbar-brand">ParketPlace</span>
             <div>
-                <span class="me-3" id="username">Cargando...</span>
+                <span class="me-3" id="username">{{ usuario }}</span>
                 <button id="user-btn" class="btn btn-light">
                     <i class="bi bi-person-circle"></i>
                 </button>
@@ -141,7 +141,7 @@
 
         <!-- Sección bienvenida -->
         <div class="mt-3">
-            <h3>Bienvenid@, <span class="fw-bold" id="user-name-display">Cargando...</span></h3>
+            <h3>Bienvenid@, <span class="fw-bold" id="user-name-display">{{ usuario }}</span></h3>
         </div>
 
         <!-- Sección Pico y Placa -->

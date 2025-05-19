@@ -1,29 +1,58 @@
 from flask import Flask, render_template, request, redirect, url_for
 import requests
 from datetime import datetime
-
+from flask import session
 
 app = Flask(__name__)
+app.secret_key = 'clave_secreta_segura'
 
+from flask import Flask, render_template, request, redirect, url_for, session
+import requests
 
-# Ruta de login
 @app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        usuario = request.form["usuario"]
-        contrasena = request.form["contrasena"]
-        
-        # Simulación de usuario y contraseña correctos
-        if usuario == "admin" and contrasena == "1234":
-            return redirect(url_for("dashboard"))
-        else:
-            return render_template("index.html", error="Usuario o contraseña incorrectos")
+        email = request.form.get("usuario")
+        password = request.form.get("contrasena")
+
+        payload = {
+            "email": email,
+            "password": password
+        }
+
+        try:
+            response = requests.post("http://localhost:3000/usuario/ingreso", json=payload)
+            print("Status code:", response.status_code)
+
+            if response.status_code in [200, 201]:
+                data = response.json()
+                print("Respuesta del backend:", data)
+
+                if "access_token" in data:
+                    session["token"] = data["access_token"]
+                    session["usuario"] = data["usuario"]["email"]
+                    session["nombre"] = data["usuario"]["nombres"]
+                    return redirect(url_for("dashboard"))
+                else:
+                    return render_template("index.html", error="Error: no se recibió el token")
+
+            else:
+                print("Error al iniciar sesión:", response.text)
+                return render_template("index.html", error="Usuario o contraseña incorrectos")
+
+        except Exception as e:
+            print("Excepción en login:", e)
+            return render_template("index.html", error="Error de conexión con el servidor")
+
     return render_template("index.html")
+
 
 # Página del dashboard
 @app.route("/dashboard")
 def dashboard():
-    return render_template("dashboard.html")
+    if "usuario" not in session:
+        return redirect(url_for("login"))
+    return render_template("dashboard.html", usuario=session["nombre"])
 
 # Ruta para registrar usuario
 @app.route("/register", methods=["GET", "POST"])

@@ -46,13 +46,17 @@ def login():
 
     return render_template("index.html")
 
+@app.route("/logout")
+def logout():
+    session.clear()  # Esto elimina todos los datos de sesión
+    return redirect(url_for("login"))  # Redirige al login
 
 # Página del dashboard
 @app.route("/dashboard")
 def dashboard():
     if "usuario" not in session:
         return redirect(url_for("login"))
-    return render_template("dashboard.html", usuario=session["nombre"])
+    return render_template("dashboard.html", usuario=session["nombre"], email=session["usuario"])
 
 # Ruta para registrar usuario
 @app.route("/register", methods=["GET", "POST"])

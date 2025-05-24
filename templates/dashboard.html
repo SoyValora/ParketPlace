@@ -76,9 +76,8 @@
                 
                         <!-- Información del usuario -->
                         <div class="user-info mt-3">
-                            <p><strong>Nombre:</strong> Nombre del Usuario</p>
-                            <p><strong>Email:</strong> usuario@email.com</p>
-                            <p><strong>Rol:</strong> Usuario</p>
+                            <p><strong>Nombre:</strong> {{ usuario }}</p>
+                            <p><strong>Email:</strong> {{ email }}</p>
                         </div>
                 
                         <!-- Botones principales -->
@@ -92,9 +91,10 @@
                             <button class="btn custom-btn transactions-btn mb-2">
                                 <i class="fas fa-file-invoice-dollar me-2"></i> Historial de Transacciones
                             </button>
-                            <button class="btn custom-btn logout-btn">
+                            <a href="{{ url_for('logout') }}" class="btn custom-btn logout-btn">
                                 <i class="fas fa-sign-out-alt me-2"></i> Cerrar Sesión
-                            </button>
+                            </a>
+
                         </div>
                     </div>
                 </div>

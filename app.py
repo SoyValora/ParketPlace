@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
 
@@ -43,6 +43,34 @@ def register():
 @app.route('/recargar_carnet')
 def recargar_carnet():
     return render_template('recargar_carnet.html')
+
+@app.route('/visitor_register', methods=['GET'])
+def visitantes():
+    return render_template('visitantes.html')
+
+# Ruta para procesar los datos del formulario
+@app.route('/visitor_register', methods=['POST'])
+def visitor_register():
+    # Obtener los datos del formulario
+    placa = request.form.get('placa')
+    nombre = request.form.get('nombre')
+    apellido = request.form.get('apellido')
+    valor = request.form.get('valor')  # Este es el valor a pagar con formato, sin el signo de pesos
+    pago = request.form.get('pago')  # El tipo de pago seleccionado
+
+    # Validar datos básicos
+    if not placa or not nombre or not apellido or not valor or not pago:
+        flash('Todos los campos son obligatorios.')
+        return redirect(url_for('visitantes'))
+
+    # Procesar los datos, por ejemplo, puedes guardar en la base de datos o realizar otras acciones
+    print(f"Placa: {placa}, Nombre: {nombre}, Apellido: {apellido}, Valor a Pagar: {valor}, Método de Pago: {pago}")
+
+    # Aquí podrías agregar lógica para guardar en la base de datos si lo necesitas.
+    
+    # Redirigir a una página de éxito o a la misma página
+    flash('Pago Procesado exitosamente.')
+    return redirect(url_for('visitantes'))  # O redirigir a una página de éxito
 
 # Iniciar la aplicación Flask
 if __name__ == "__main__":

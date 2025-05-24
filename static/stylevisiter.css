@@ -1,0 +1,106 @@
+/* Cuerpo */
+body {
+    margin: 0;
+    color: #e0e0e0;
+    font-family: 'Quicksand';
+    background: url('/static/fondoregister.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Contenedor principal */
+.card {
+    background-color: rgba(42, 42, 42, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px; /* Ajustado para hacerlo más pequeño */
+    padding: 2rem; /* Reducido el padding para compactar */
+    color: #ffffff;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    transition: transform 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-4px);
+}
+
+/* Título */
+.card h2 {
+    font-size: 1.8rem; /* Tamaño reducido */
+    font-weight: 600;
+    margin-bottom: 1.5rem; /* Espaciado ajustado */
+}
+
+/* Estilos del formulario */
+form {
+    width: 100%;
+}
+
+/* Estilos de cada input y textarea */
+input, textarea {
+    background-color: #333;
+    font-family: 'Quicksand';
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 0.7rem 0.9rem; /* Tamaño reducido */
+    width: 100%; /* 100% de ancho */
+    margin-bottom: 1.2rem;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus, textarea:focus {
+    border-color: #e74c3c;
+    box-shadow: 0 0 8px rgba(231, 76, 60, 0.4);
+    outline: none;
+}
+
+/* Etiquetas */
+label {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin-bottom: 0.4rem;
+    display: block;
+}
+/* Botón principal */
+.btn-primary {
+    background-color: #e74c3c;  /* Rojo */
+    font-weight: bold;
+    font-family: 'Quicksand';
+    border: none;
+    color: #fff;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s;
+    width: 100%;
+    margin-top: 1.5rem;
+}
+
+.btn-primary:hover {
+    background-color: #c0392b;  /* Rojo más oscuro en hover */
+    transform: scale(1.02);
+}
+
+
+/* Botón secundario */
+.btn-secondary {
+    background-color: #555;
+    border: none;
+    color: #fff;
+    margin-top: 1rem;
+    padding: 0.6rem;
+    border-radius: 8px;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: #777;
+    transform: scale(1.02);
+}

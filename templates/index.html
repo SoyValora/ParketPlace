@@ -15,7 +15,7 @@
 <body>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
-        </style>
+    </style>
     <div class="container-fluid vh-100 d-flex">
         <!-- Formulario a la izquierda -->
         <div class="col-md-6 d-flex align-items-center justify-content-center">
@@ -40,6 +40,9 @@
 
                 <!-- Botón de registro -->
                 <a href="{{ url_for('register') }}" class="btn-secondary">Registrarse</a>
+
+                <!-- Nuevo botón -->
+                <a href="{{  url_for('visitor_register') }}" class="btn-secondary mt-2">Ingreso de Visitantes</a>
             </div>
         </div>
 

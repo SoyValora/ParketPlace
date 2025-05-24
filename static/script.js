@@ -8,11 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const notifBtn = document.getElementById('notif-btn');
     const notifContainer = document.getElementById('notification-container');
 
-    // Nombre de usuario dinámico
-    const username = "Usuarios IUSH"; // Aquí deberías cargar el nombre desde backend si es dinámico
-    document.getElementById("username").innerText = username;
-    document.getElementById("user-name-display").innerText = username;
-
+  
     // Toggle de sidebar
     toggleBtn.addEventListener("click", function () {
         sidebar.classList.toggle("collapsed");

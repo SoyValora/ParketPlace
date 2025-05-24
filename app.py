@@ -1,41 +1,114 @@
+
 from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for
+import requests
+from datetime import datetime
+from flask import session
+
 
 app = Flask(__name__)
+app.secret_key = 'clave_secreta_segura'
 
+from flask import Flask, render_template, request, redirect, url_for, session
+import requests
 
-# Ruta de login
 @app.route("/", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        usuario = request.form["usuario"]
-        contrasena = request.form["contrasena"]
-        
-        # Simulación de usuario y contraseña correctos
-        if usuario == "admin" and contrasena == "1234":
-            return redirect(url_for("dashboard"))
-        else:
-            return render_template("index.html", error="Usuario o contraseña incorrectos")
+        email = request.form.get("usuario")
+        password = request.form.get("contrasena")
+
+        payload = {
+            "email": email,
+            "password": password
+        }
+
+        try:
+            response = requests.post("http://localhost:3000/usuario/ingreso", json=payload)
+            print("Status code:", response.status_code)
+
+            if response.status_code in [200, 201]:
+                data = response.json()
+                print("Respuesta del backend:", data)
+
+                if "access_token" in data:
+                    session["token"] = data["access_token"]
+                    session["usuario"] = data["usuario"]["email"]
+                    session["nombre"] = data["usuario"]["nombres"]
+                    return redirect(url_for("dashboard"))
+                else:
+                    return render_template("index.html", error="Error: no se recibió el token")
+
+            else:
+                print("Error al iniciar sesión:", response.text)
+                return render_template("index.html", error="Usuario o contraseña incorrectos")
+
+        except Exception as e:
+            print("Excepción en login:", e)
+            return render_template("index.html", error="Error de conexión con el servidor")
 
     return render_template("index.html")
+
+@app.route("/logout")
+def logout():
+    session.clear()  # Esto elimina todos los datos de sesión
+    return redirect(url_for("login"))  # Redirige al login
 
 # Página del dashboard
 @app.route("/dashboard")
 def dashboard():
-    return render_template("dashboard.html")
+    if "usuario" not in session:
+        return redirect(url_for("login"))
+    return render_template("dashboard.html", usuario=session["nombre"], email=session["usuario"])
 
-# Ruta de registro (Formulario GET y Procesamiento POST)
+# Ruta para registrar usuario
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        nombre = request.form.get("nombre")
-        apellidos = request.form.get("apellidos")
-        identificacion = request.form.get("identificacion")  # Puede ser cédula o código
-        email = request.form.get("email")
-        celular = request.form.get("celular")
+        # Capturamos los datos del formulario
+        nombres = request.form["nombres"]
+        apellidos = request.form["apellidos"]
+        documentoIdent = request.form["documentoIdent"]
+        codUniversidad = request.form["codUniversidad"]
+        email = request.form["email"]
+        password = request.form["password"]
+        programa = request.form["programa"]
+        fechaNacimiento = request.form["fechaNacimiento"]
+        celular = request.form["celular"]
 
-        # Aquí puedes guardar los datos en una base de datos si lo deseas
+        # Convertir fecha a string si necesitas (NestJS espera string tipo '2024-04-25')
+        fechaNacimiento = datetime.strptime(fechaNacimiento, '%Y-%m-%d').isoformat() + "Z"
 
-        mensaje = f"Registro exitoso para {nombre} {apellidos}!"
+         # Convertir codUniversidad a int
+        try:
+            codUniversidad = int(codUniversidad)
+        except ValueError:
+            return render_template("register.html", mensaje="El código de universidad debe ser un número entero.")
+
+        # Crear el payload
+        payload = {
+            "nombres": nombres,
+            "apellidos": apellidos,
+            "documentoIdent": documentoIdent,
+            "codUniversidad": codUniversidad,
+            "email": email,
+            "password": password,
+            "programa": programa,
+            "fechaNacimiento": fechaNacimiento,
+            "celular": celular
+        }
+
+        try:
+            # Enviar POST a NestJS
+            response = requests.post("http://localhost:3000/usuario/registro", json=payload)
+
+            if response.status_code == 201 or response.status_code == 200:
+                mensaje = "Usuario registrado exitosamente en el backend"
+            else:
+                mensaje = f"Error al registrar usuario: {response.text}"
+        except Exception as e:
+            mensaje = f"Error de conexión: {str(e)}"
+
         return render_template("register.html", mensaje=mensaje)
 
     return render_template("register.html")
